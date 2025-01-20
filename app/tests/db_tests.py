@@ -3,6 +3,8 @@ import asyncio
 import uuid
 from datetime import datetime
 
+from numpy.compat import asunicode
+
 
 async def test_create_note():
     url = 'http://localhost:8000/api/v1/notes'
@@ -42,8 +44,23 @@ async def get_note_by_id():
     except Exception as e:
         print(f"❌ Error: {str(e)}")
 
+async def get_note_by_userid():
+    user_id = "7dd28284-477d-48b2-b65e-d2e4b62d2a0d"
+    url = f'http://localhost:8000/api/v1/notes/user/{user_id}'
+    try:
+        async with aiohttp.ClientSession() as session:
+            print(f"\n Retrieving note...")
+            async with session.get(url) as response:
+                status = response.status
+                result = await response.json()
+                print(f"Status Code: {status}")
+                print(f"Response: {result}")
+    except Exception as e:
+        print(f"❌ Error: {str(e)}")
+
 
 if __name__ == "__main__":
     print("Starting API tests...")
     # asyncio.run(test_create_note())
-    asyncio.run(get_note_by_id())
+    # asyncio.run(get_note_by_id())
+    asyncio.run(get_note_by_userid())

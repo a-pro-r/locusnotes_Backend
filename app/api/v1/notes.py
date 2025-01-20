@@ -18,6 +18,10 @@ async def create_note(note: Note, db: AsyncSession = Depends(get_db)):
 async def get_note(note_id: str, db: AsyncSession = Depends(get_db)):
     return await NoteService.get_note(db,note_id)
 
+@router.get("/notes/user/{user_id}") # get all note for a user
+async def get_user_notes(user_id: str, db: AsyncSession = Depends(get_db)):
+    return await NoteService.get_user_notes(db,user_id)
+
 
 @router.put("/notes/{note_id}", status_code=status.HTTP_200_OK)
 async def update_note(note_id: str, note: Note):
