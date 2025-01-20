@@ -6,7 +6,6 @@ from datetime import datetime
 
 async def test_create_note():
     url = 'http://localhost:8000/api/v1/notes'
-
     test_note = {
         "user_id": "7dd28284-477d-48b2-b65e-d2e4b62d2a0d",  # Fixed user ID
         "title": "Test Note @ walmart",
@@ -29,7 +28,22 @@ async def test_create_note():
     except Exception as e:
         print(f"❌ Error: {str(e)}")
 
+async def get_note_by_id():
+    note_id = "ad83213a-8554-4ca3-93f1-086686e672d9"
+    url = f'http://localhost:8000/api/v1/notes/{note_id}'
+    try:
+        async with aiohttp.ClientSession() as session:
+            print(f"\n Retrieving note...")
+            async with session.get(url) as response:
+                status = response.status
+                result = await response.json()
+                print(f"Status Code: {status}")
+                print(f"Response: {result}")
+    except Exception as e:
+        print(f"❌ Error: {str(e)}")
+
 
 if __name__ == "__main__":
     print("Starting API tests...")
-    asyncio.run(test_create_note())
+    # asyncio.run(test_create_note())
+    asyncio.run(get_note_by_id())
