@@ -1,11 +1,11 @@
-# from select import select
 from sqlalchemy import select
 from app.models.notes import Note
 from sqlalchemy.ext.asyncio import AsyncSession
 from geoalchemy2.shape import from_shape
 from geoalchemy2.shape import to_shape
 from shapely.geometry import Point
-import json
+from sqlalchemy import and_
+from datetime import datetime
 from app.db.models import NoteDB
 import uuid
 
@@ -78,9 +78,43 @@ class NoteService:
 
 
     @staticmethod
-    async def update_note(note_id: str, note: Note):
-        # Implementation for updating note
-        pass
+    async def update_note(note_id: str, user_id: str, note: Note, session: AsyncSession):
+        try:
+            stmt = select(NoteDB).where(
+                and_(
+                    NoteDB.id == note_id,
+                    NoteDB.user_id == user_id
+                )
+            )
+            result = await session.execute(stmt)
+            db_note = result.scalar_one_or_none()
+
+            if db_note is None:
+                raise Exception(f"Note with id {note_id} not found")
+
+            # update lat lon -> location
+            if note.latitude is not None and note.longitude is not None:
+                point = Point(note.longitude, note.latitude)
+                db_note.location = from_shape(point, srid=4326)
+                db_note.location_name = note.location_name
+                db_note.address = note.address
+            else:
+                db_note.location = None
+                db_note.location_name = None
+                db_note.address = None
+
+            db_note.title = note.title
+            db_note.content = note.content
+            db_note.tags = note.tags
+            db_note.updated_at = datetime.utcnow()
+
+            await session.commit()
+
+        except Exception as e:
+            await session.rollback()
+            raise Exception(f"Failed to update note: {str(e)}")
+
+
 
     @staticmethod
     async def delete_note(note_id: str):

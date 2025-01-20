@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1414df30-fe8c-44e8-8ec6-ffd93f0a58b9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/api/v1/notes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/notes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/notes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/notes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/tests/db_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/tests/db_tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,18 +23,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "a-pro-r"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;a-pro-r&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/a-pro-r/locusnotes_Backend.git",
-    "accountId": "4426e49f-8472-42de-ad54-3bff8f5681f2"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/a-pro-r/locusnotes_Backend.git&quot;,
+    &quot;accountId&quot;: &quot;4426e49f-8472-42de-ad54-3bff8f5681f2&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -50,7 +49,7 @@
     "Python.database.executor": "Run",
     "Python.db_tests.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature/getNote"
+    "git-widget-placeholder": "feature/updateNote"
   }
 }]]></component>
   <component name="SharedIndexes">
