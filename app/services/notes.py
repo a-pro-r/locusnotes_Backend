@@ -16,7 +16,7 @@ class NoteService:
                 user_id=uuid.UUID(note.user_id),
                 title=note.title,
                 content=note.content,
-                tags=json.dumps(note.tags),
+                tags=note.tags,
                 location_name=note.location_name,
                 address=note.address
             )

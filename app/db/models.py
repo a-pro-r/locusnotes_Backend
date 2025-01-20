@@ -1,5 +1,5 @@
 # app/db/models.py
-from sqlalchemy import Column, String, Float, TIMESTAMP, text
+from sqlalchemy import Column, String, Float, TIMESTAMP, text, ARRAY
 from sqlalchemy.dialects.postgresql import UUID
 from geoalchemy2 import Geometry
 from sqlalchemy.ext.declarative import declarative_base
@@ -14,7 +14,7 @@ class NoteDB(Base):
     user_id = Column(UUID, nullable=False)
     title = Column(String, nullable=False)
     content = Column(String)
-    tags = Column(String)  # Stored as JSON string
+    tags = Column(ARRAY(String))
     location_name = Column(String)
     location = Column(Geometry('POINT', srid=4326))
     address = Column(String)
