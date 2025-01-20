@@ -24,9 +24,16 @@ async def get_user_notes(user_id: str, db: AsyncSession = Depends(get_db)):
 
 
 @router.put("/notes/{note_id}", status_code=status.HTTP_200_OK)
-async def update_note(note_id: str, note: Note):
-    await NoteService.update_note(note_id, note)
-    return {"id": note_id, "message": "Note updated successfully"}
+async def update_note(note_id: str,note: Note,db: AsyncSession = Depends(get_db)):
+    try:
+        # note.user_id would be provided in the Note model from the mobile device
+        await NoteService.update_note(note_id, note.user_id, note, db)
+        return {"id": note_id, "message": "Note updated successfully"}
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Note not found or you don't have permission to update it"
+        )
 
 
 @router.delete("/notes/{note_id}", status_code=status.HTTP_204_NO_CONTENT)
