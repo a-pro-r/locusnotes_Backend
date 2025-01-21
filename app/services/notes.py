@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlalchemy import select, delete
 from app.models.notes import Note
 from sqlalchemy.ext.asyncio import AsyncSession
 from geoalchemy2.shape import from_shape
@@ -117,9 +117,24 @@ class NoteService:
 
 
     @staticmethod
-    async def delete_note(note_id: str, user_id: str, note: Note, session: AsyncSession):
-        # Implementation for deleting note
-        pass
+    async def delete_note(note_id: str, user_id: str, session: AsyncSession):
+        try:
+            stmt = delete(NoteDB).where(
+                and_(
+                    NoteDB.id == note_id,
+                    NoteDB.user_id == user_id
+                )
+            )
+            result = await session.execute(stmt)
+            if result.rowcount == 0:
+                raise Exception("Note not found or unauthorized")
+
+            await  session.commit()
+            return True
+        except Exception as e:
+            await session.rollback()
+            raise Exception(f"Failed to delete note: {str(e)}")
+
 
     @staticmethod
     async def get_user_notes(session: AsyncSession, user_id: str) -> list[dict]:
