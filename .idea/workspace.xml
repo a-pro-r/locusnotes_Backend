@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1414df30-fe8c-44e8-8ec6-ffd93f0a58b9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/v1/notes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/notes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/notes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/notes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/tests/db_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/tests/db_tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +51,7 @@
     "Python.database.executor": "Run",
     "Python.db_tests.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature/updateNote"
+    "git-widget-placeholder": "feature/deleteNote"
   }
 }]]></component>
   <component name="SharedIndexes">
