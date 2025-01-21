@@ -117,7 +117,7 @@ class NoteService:
 
 
     @staticmethod
-    async def delete_note(note_id: str):
+    async def delete_note(note_id: str, user_id: str, note: Note, session: AsyncSession):
         # Implementation for deleting note
         pass
 
