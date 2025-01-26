@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from mangum import Mangum
 from app.api.v1 import notes, location
 from app.config import settings
+from app.api.v1 import users
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -12,6 +13,7 @@ app = FastAPI(
 # Include routers
 app.include_router(notes.router, prefix=settings.API_V1_STR)
 app.include_router(location.router, prefix=settings.API_V1_STR)
+app.include_router(users.router, prefix=settings.API_V1_STR)
 
 @app.get("/health")
 async def health_check():
