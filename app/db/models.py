@@ -22,3 +22,14 @@ class NoteDB(Base):
                        server_default=text('CURRENT_TIMESTAMP'))
     updated_at = Column(TIMESTAMP(timezone=True),
                        server_default=text('CURRENT_TIMESTAMP'))
+
+class UserDB(Base):
+    __tablename__ = "users"
+
+    id = Column(UUID, primary_key=True, default=uuid.uuid4)
+    email = Column(String, unique=True, nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True),
+                       server_default=text('CURRENT_TIMESTAMP'))
+    updated_at = Column(TIMESTAMP(timezone=True),
+                       server_default=text('CURRENT_TIMESTAMP'))
+    last_login = Column(TIMESTAMP(timezone=True), nullable=True)
