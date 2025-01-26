@@ -110,14 +110,13 @@ async def test_delete_note():
 
 async def test_register_user():
     url = 'http://localhost:8000/api/v1/users/register'
-    test_user = {
-        "email": "test_script@example.com"
-    }
+    email = "test_script@example.com"
 
     try:
         async with aiohttp.ClientSession() as session:
             print(f"\nTrying to register user...")
-            async with session.post(url, json=test_user) as response:
+            params = {'email': email}
+            async with session.post(url, params=params) as response:
                 status = response.status
                 result = await response.json()
                 print(f"Status Code: {status}")
