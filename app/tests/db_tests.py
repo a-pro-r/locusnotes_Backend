@@ -108,6 +108,28 @@ async def test_delete_note():
     except Exception as e:
         print(f"❌ Error: {str(e)}")
 
+async def test_register_user():
+    url = 'http://localhost:8000/api/v1/users/register'
+    test_user = {
+        "email": "test_script@example.com"
+    }
+
+    try:
+        async with aiohttp.ClientSession() as session:
+            print(f"\nTrying to register user...")
+            async with session.post(url, json=test_user) as response:
+                status = response.status
+                result = await response.json()
+                print(f"Status Code: {status}")
+                print(f"Response: {result}")
+
+                if status == 201:
+                    user_id = result["id"]
+                    print(f"User registered successfully with ID: {user_id}")
+                    return user_id
+    except Exception as e:
+        print(f"❌ Error: {str(e)}")
+
 
 if __name__ == "__main__":
     print("Starting API tests...")
@@ -115,4 +137,5 @@ if __name__ == "__main__":
     # asyncio.run(get_note_by_id())
     # asyncio.run(get_note_by_userid())
     # asyncio.run(test_update_note())
-    asyncio.run(test_delete_note())
+    # asyncio.run(test_delete_note())
+    asyncio.run(test_register_user())
